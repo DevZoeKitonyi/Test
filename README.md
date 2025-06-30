@@ -1,6 +1,7 @@
 # 🚀 Advanced Todo Web Application
 
 A modern, responsive todo list application built with Flask, HTMX, and Tailwind CSS.
+![Screenshot 2025-06-30 203749](https://github.com/user-attachments/assets/2372b9a2-edce-4008-b28f-4749a6daac82)
 
 ![Todo App Screenshot]
 file:///C:/Users/user/Pictures/Screenshots/Screenshot%202025-06-30%20203749.png
