@@ -1,0 +1,63 @@
+-<!-- templates/todo_list.html -->
+<div id="todo-list-container" class="space-y-3">
+    <!-- Sorting Controls -->
+    <div class="flex justify-between items-center mb-4 p-2 bg-gray-100 rounded-lg">
+        <div class="flex space-x-2">
+            <button hx-get="/todos?sort=priority" hx-target="#todo-list" 
+                    class="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition">
+                Sort by Priority
+            </button>
+            <button hx-get="/todos?sort=date" hx-target="#todo-list" 
+                    class="px-3 py-1 text-sm rounded-full bg-purple-100 text-purple-800 hover:bg-purple-200 transition">
+                Sort by Date
+            </button>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="flex space-x-2">
+            <button hx-get="/todos?filter=all" hx-target="#todo-list" 
+                    class="px-3 py-1 text-sm rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition">
+                All
+            </button>
+            <button hx-get="/todos?filter=active" hx-target="#todo-list" 
+                    class="px-3 py-1 text-sm rounded-full bg-green-100 text-green-800 hover:bg-green-200 transition">
+                Active
+            </button>
+            <button hx-get="/todos?filter=completed" hx-target="#todo-list" 
+                    class="px-3 py-1 text-sm rounded-full bg-yellow-100 text-yellow-800 hover:bg-yellow-200 transition">
+                Completed
+            </button>
+        </div>
+    </div>
+
+    <!-- Todo Items -->
+    <div id="todo-list" class="space-y-3">
+        {% for todo in todos %}
+            {% include "todo_item.html" %}
+        {% else %}
+            <div class="text-center py-8 text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <p class="mt-2">No todos found. Add one above!</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Bulk Actions -->
+    <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
+        <span class="text-sm text-gray-600">
+            {{ todos|selectattr('completed')|list|length }} of {{ todos|length }} completed
+        </span>
+        <div class="space-x-2">
+            <button hx-post="/todos/complete-all" hx-target="#todo-list"
+                    class="px-3 py-1 text-sm rounded bg-green-100 text-green-800 hover:bg-green-200 transition">
+                Complete All
+            </button>
+            <button hx-delete="/todos/clear-completed" hx-target="#todo-list"
+                    class="px-3 py-1 text-sm rounded bg-red-100 text-red-800 hover:bg-red-200 transition">
+                Clear Completed
+            </button>
+        </div>
+    </div>
+</div>
