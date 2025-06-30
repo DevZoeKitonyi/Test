@@ -2,7 +2,7 @@
 
 A modern, responsive todo list application built with Flask, HTMX, and Tailwind CSS.
 
-![Todo App Screenshot](screenshot.png)
+![Todo App Screenshot](file:///C:/Users/user/Pictures/Screenshots/Screenshot%202025-06-30%20203749.png0
 
 ## ✨ Features
 
